@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <td><?php echo $totalValue; ?></td>
                 <td>
                     <form method="post">
-                        <input type="submit" name="calculate_total" value="Calculate total">
+                        <input type="submit" name="Calculate Total" value="calculate_total">
                     </form>
                 </td>
             </tr>
