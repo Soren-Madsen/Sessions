@@ -70,86 +70,88 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } 
 ?>
 
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html>
 
-<head>     
-    <title>Shopping List</title>     
-    <style>         
-        table, th, td {             
-            border: 1px solid black;             
-            border-collapse: collapse;         
-        }         
-        th, td {             
-            padding: 5px;         
-        }         
-        input[type=submit] {             
-            margin-top: 10px;         
-        }     
-    </style> 
-</head> 
+<head>
+    <title>Shopping list</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
 
-<body>     
-    <h1>Shopping List</h1>          
+        th,
+        td {
+            padding: 5px;
+        }
 
-    <form method="post">         
-        <label for="name">Name:</label>         
-        <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($name); ?>">         
-        <br>         
-        <label for="quantity">Quantity:</label>         
-        <input type="number" name="quantity" id="quantity" value="<?php echo htmlspecialchars($quantity); ?>" min="1">         
-        <br>         
-        <label for="price">Price:</label>         
-        <input type="number" name="price" id="price" value="<?php echo htmlspecialchars($price); ?>" min="0">         
-        <br>         
-        <input type="hidden" name="index" value="<?php echo $index; ?>">         
-        <input type="submit" name="add" value="Add">         
-        <input type="submit" name="update" value="Update">         
-        <input type="submit" name="reset" value="Reset">     
-    </form>      
+        input[type=submit] {
+            margin-top: 10px;
+        }
+    </style>
+</head>
 
-    <p style="color:red;"><?php echo $error; ?></p>     
-    <p style="color:green;"><?php echo $message; ?></p>      
-
-    <table>         
-        <thead>             
-            <tr>                 
-                <th>Name</th>                 
-                <th>Quantity</th>                 
-                <th>Price</th>                 
-                <th>Cost</th>                 
-                <th>Actions</th>             
-            </tr>         
-        </thead>         
-        <tbody>             
-            <?php foreach ($_SESSION['shopping_list'] as $index => $item) { ?>                 
-                <tr>                     
-                    <td><?php echo htmlspecialchars($item['name']); ?></td>                     
-                    <td><?php echo htmlspecialchars($item['quantity']); ?></td>                     
-                    <td><?php echo htmlspecialchars($item['price']); ?></td>                     
-                    <td><?php echo $item['quantity'] * $item['price']; ?></td>                     
-                    <td>                         
-                        <form method="post" style="display:inline;">                             
-                            <input type="hidden" name="name" value="<?php echo htmlspecialchars($item['name']); ?>">                             
-                            <input type="hidden" name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>">                             
-                            <input type="hidden" name="price" value="<?php echo htmlspecialchars($item['price']); ?>">                             
-                            <input type="hidden" name="index" value="<?php echo $index; ?>">                             
-                            <input type="submit" name="edit" value="Edit">                             
-                            <input type="submit" name="delete" value="Delete">                         
-                        </form>                     
-                    </td>                 
-                </tr>             
-            <?php } ?>             
-            <tr>                 
-                <td colspan="3" align="right"><strong>Total:</strong></td>                 
-                <td><?php echo $totalValue; ?></td>                 
+<body>
+    <h1>Shopping list</h1>
+    <form method="post">
+        <label for="name">name:</label>
+        <input type="text" name="name" id="name" value="<?php echo $name; ?>">
+        <br>
+        <label for="quantity">quantity:</label>
+        <input type="number" name="quantity" id="quantity" value="<?php echo $quantity; ?>">
+        <br>
+        <label for="price">price:</label>
+        <input type="number" name="price" id="price" value="<?php echo $price; ?>">
+        <br>
+        <input type="hidden" name="index" value="<?php echo $index; ?>">
+        <input type="submit" name="add" value="Add">
+        <input type="submit" name="update" value="Update">
+        <input type="submit" name="reset" value="Reset">
+    </form>
+    <p style="color:red;"><?php echo $error; ?></p>
+    <p style="color:green;"><?php echo $message; ?></p>
+    <table>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>quantity</th>
+                <th>price</th>
+                <th>cost</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($_SESSION['list'] as $index => $item) { ?>
+                <tr>
+                    <td><?php echo $item['name']; ?></td>
+                    <td><?php echo $item['quantity']; ?></td>
+                    <td><?php echo $item['price']; ?></td>
+                    <td><?php echo $item['quantity'] * $item['price']; ?></td>
+                    <td>
+                        <form method="post">
+                            <input type="hidden" name="name" value="<?php echo $item['name']; ?>">
+                            <input type="hidden" name="quantity" value="<?php echo $item['quantity']; ?>">
+                            <input type="hidden" name="price" value="<?php echo $item['price']; ?>">
+                            <input type="hidden" name="index" value="<?php echo $index; ?>">
+                            <input type="submit" name="edit" value="Edit">
+                            <input type="submit" name="delete" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
+            <tr>
+                <td colspan="3" align="right"><strong>Total:</strong></td>
+                <td><?php echo $totalValue; ?></td>
                 <td>
                     <form method="post">
-                        <input type="submit" name="calculate_total" value="Calculate Total">
+                        <input type="submit" name="total" value="Calculate total">
                     </form>
-                </td>             
-            </tr>         
-        </tbody>     
-    </table>  
-</body> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
 </html>
