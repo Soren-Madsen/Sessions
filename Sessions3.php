@@ -5,6 +5,7 @@ if (!isset($_SESSION['shopping_list'])) {
     $_SESSION['shopping_list'] = []; 
 }  
 
+
 $name = $quantity = $price = ""; 
 $index = -1; 
 $message = ""; 
