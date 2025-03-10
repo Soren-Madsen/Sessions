@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 } 
+
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($_SESSION['list'] as $index => $item) { ?>
+            <?php foreach ($_SESSION['shopping_list'] as $index => $item) { ?>
                 <tr>
                     <td><?php echo $item['name']; ?></td>
                     <td><?php echo $item['quantity']; ?></td>
